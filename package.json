@@ -1,0 +1,35 @@
+{
+  "name": "backend-server",
+  "version": "1.0.0",
+  "description": "Sevidor backend del curso de Angulaer Avanzado de Udey",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "angular",
+    "node",
+    "udemy"
+  ],
+  "author": "Paco Maciá",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.5",
+    "google-auth-library": "^5.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.11",
+    "mongoose-unique-validator": "^2.0.3",
+    "request": "^2.88.0",
+    "serve-index": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "jshintConfig": {
+    "esversion": "8"
+  }
+}
