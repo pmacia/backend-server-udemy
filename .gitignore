@@ -1,2 +1,4 @@
 node_modules/
 routes/myfox.js
+routes/myfox_old.js
+uploads/

@@ -20,10 +20,10 @@ app.get('/', (req, res) => {
     var desde = req.query.desde || 0;
     desde = Number(desde);
 
-    Hospital.find({}, 'nombre img usuario')
+    Hospital.find({}, 'nombre img')
         .skip(desde)
         .limit(5)
-        .populate('usuario', 'nombre email')
+        .populate('usuario', 'nombre img email')
         .exec( (err, hospitales) => {
             if (err) {
                 return res.status(500).json({
@@ -43,6 +43,37 @@ app.get('/', (req, res) => {
         });
 });
 
+// -----------------------------------------------------
+// Obtener un hospital
+// -----------------------------------------------------
+app.get('/:id', (req, res) => {
+    var id = req.params.id;
+
+    Hospital.findById( id )
+        .populate('usuario', 'nombre img email')
+        .exec( (err, hospital) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    mensaje: 'Error bucando hospital',
+                    errors: err
+                });
+            }
+
+            if (!hospital) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: `Error bucando hospital con id: ${id}`,
+                    errors: { message: 'No existe un hospital con el ID indicado'}
+                });
+            }
+
+            res.status(200).json({
+                ok: true,
+                hospital: hospital,
+            });
+        });
+});
 
 // -----------------------------------------------------
 // Crear un hospital

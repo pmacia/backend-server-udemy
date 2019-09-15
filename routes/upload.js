@@ -93,7 +93,7 @@ function subirPorTipo(tipo,  id, nombreArchivo, res ) {
                     errors: err
                 });                            
             }
-            var pathAnterior = './uploads/usuarios/' + usuario.img;
+            var pathAnterior = './uploads/usuarios/' + (usuario.img ? usuario.img : 'xxx.img');
             console.log(pathAnterior);
             if (fs.existsSync(pathAnterior)) {
                 console.log('Eliminando archivo');
@@ -121,7 +121,7 @@ function subirPorTipo(tipo,  id, nombreArchivo, res ) {
                     errors: err
                 });                            
             }
-            var pathAnterior = './uploads/medicos/' + medico.img;
+            var pathAnterior = './uploads/medicos/' + (medico.img ? medico.img : 'xxx.img');
             console.log(pathAnterior);
             if (fs.existsSync(pathAnterior)) {
                 console.log('Eliminando archivo');
@@ -149,7 +149,7 @@ function subirPorTipo(tipo,  id, nombreArchivo, res ) {
                     errors: err
                 });                            
             }
-            var pathAnterior = './uploads/hospitales/' + hospital.img;
+            var pathAnterior = './uploads/hospitales/' + (hospital.img ? hospital.img : 'xxx.img');
             console.log(pathAnterior);
             if (fs.existsSync(pathAnterior)) {
                 console.log('Eliminando archivo');
@@ -158,7 +158,7 @@ function subirPorTipo(tipo,  id, nombreArchivo, res ) {
             hospital.img = nombreArchivo;
             console.log('guardando nuevo nombre de archivo');
             hospital.save( (err, hospitalActualizado) => {
-                return res.status(200).json({
+                return res.status(200).json({   
                     ok: true,
                     mensaje: 'El archivo se ha actualizado:',
                     hospital: hospitalActualizado

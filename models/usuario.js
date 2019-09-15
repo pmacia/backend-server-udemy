@@ -1,3 +1,12 @@
+// const usuarioNuevo = { 
+//     nombre: "Paco",
+//     email: "pmacia@ua.es",
+//     password: "1234",
+//     img: "img.png",
+//     role: "ADMIN_ROLE"
+// };
+
+
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
@@ -19,12 +28,5 @@ const usuarioSchema = new Schema ({
 
 usuarioSchema.plugin(uniqueValidator, {message: '{PATH} debe ser único.'});
 
-// const usuarioNuevo = { 
-//     nombre: "Paco",
-//     email: "pmacia@ua.es",
-//     password: "1234",
-//     img: "img.png",
-//     role: "ADMIN_ROLE"
-// };
 
 module.exports = mongoose.model('Usuario', usuarioSchema);

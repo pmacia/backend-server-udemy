@@ -20,7 +20,7 @@ app.get('/', (req, res, next) => {
     var desde = req.query.desde || 0;
     desde = Number(desde);
 
-    Usuario.find({}, 'nombre email img role')
+    Usuario.find({}, 'nombre email img role google')
         .skip(desde)
         .limit(5)
         .exec( (err, usuarios ) => {
@@ -104,9 +104,11 @@ app.put('/:id', auth, (req, res) => {
             });
         }
 
+        console.log (usuario);
         usuario.nombre = body.nombre;
         usuario.email = body.email;
         usuario.role = body.role;
+        console.log (usuario);
 
         usuario.save( (err, usuarioGuardado) => {
             if (err) {
@@ -117,6 +119,7 @@ app.put('/:id', auth, (req, res) => {
                 });
             }
 
+            console.log (usuarioGuardado);
             usuarioGuardado.password = '****';
             res.status(200).json({
                 ok: true,
@@ -128,7 +131,7 @@ app.put('/:id', auth, (req, res) => {
 
 
 // -----------------------------------------------------
-// Eleminar un usuario
+// Eliminar un usuario
 // -----------------------------------------------------
 app.delete('/:id', auth, (req, res) => {
 
