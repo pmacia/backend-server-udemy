@@ -3,6 +3,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 
 const auth = require('../middlewares/autenticacion').verificaToken;
+const authAdmin = require('../middlewares/autenticacion').verificaAdminRole;
+const authAdminOrUser = require('../middlewares/autenticacion').verificaAdminRole_o_MismoUsuario;
 
 // Inicializar variables
 const app = express();
@@ -83,7 +85,7 @@ app.post('/', /*auth,*/ (req, res, next) => {
 // -----------------------------------------------------
 // Actualizar un usuario
 // -----------------------------------------------------
-app.put('/:id', auth, (req, res) => {
+app.put('/:id', [auth, authAdminOrUser], (req, res) => {
 
     var id = req.params.id;
     var body = req.body;
